@@ -1,25 +1,25 @@
 package com.v2soft.training.controller;
 
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.v2soft.training.dao.EmployeeDao;
 import com.v2soft.training.model.Employee;
-import com.v2soft.training.model.EmployeeAddress;
 import com.v2soft.training.service.EmployeeList;
 
 @Controller
@@ -27,6 +27,16 @@ public class EmployeeController {
 	
 	private EmployeeList employeeList = new EmployeeList();
 	private ObjectMapper mapper = new ObjectMapper();
+	
+	//@Autowired
+	private EmployeeDao employeeDao = new EmployeeDao();
+	
+	/*@GetMapping(value="/abc/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+    public String getHelloWorld(@PathVariable String id) {
+
+        return "{\"name\": \"" + id + "\"}";
+    }*/
 	
 	//http://localhost:8080/EmployeePortal/getEmployeeById/{id}
 	@RequestMapping(value="/getEmployeeById/{employeeId}", method=RequestMethod.GET)
@@ -56,7 +66,12 @@ public class EmployeeController {
 	@RequestMapping(value="/getAllEmployees", method=RequestMethod.GET)
 	@ResponseBody
 	public String getAllEmployees() throws JsonProcessingException {
-		return listToString(employeeList.getList());
+		//ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext());
+	    //ed = (EmployeeDao) context.getBean("employeeDao");
+		//employeeDao = new EmployeeDao();
+		List<Employee> list = employeeDao.list();
+		//return listToString(list);
+		return mapper.writeValueAsString(list);
 	}
 	
 	/*
@@ -78,7 +93,7 @@ public class EmployeeController {
 		
 		return new ModelAndView("redirect:http://localhost:8080/EmployeePortal/getAllEmployees");
 	}
-	
+
 	
 	//Helper method to convert list to string of jsons
 	private String listToString(List<Employee> list) throws JsonProcessingException {

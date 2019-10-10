@@ -1,0 +1,5 @@
+package com.v2soft.training.dao;
+
+public class EmployeeDao {
+
+}

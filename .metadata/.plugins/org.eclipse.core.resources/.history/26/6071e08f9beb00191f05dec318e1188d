@@ -1,0 +1,30 @@
+package com.v2soft.training.dao;
+
+import java.util.List;
+ 
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.v2soft.training.model.Employee;
+
+public class EmployeeDao {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	 
+    public EmployeeDao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+ 
+    @Transactional
+    public List<Employee> list() {
+        @SuppressWarnings("unchecked")
+        List<Employee> listUser = (List<Employee>) sessionFactory.getCurrentSession()
+                .createCriteria(Employee.class)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+ 
+        return listUser;
+    }
+}
