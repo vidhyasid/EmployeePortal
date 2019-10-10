@@ -1,0 +1,17 @@
+package com.v2soft.training.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.ModelMap;
+
+@Controller
+public class EmployeeController {
+	
+	@RequestMapping(value="/getEmployeeById/{employeeId}", method=RequestMethod.GET)
+	public String printHello(@PathVariable String employeeId) {
+		model.addAttribute("message", "Hello Spring MVC Framework!");
+		return "hello";
+	}
+}

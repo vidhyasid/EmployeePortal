@@ -1,0 +1,87 @@
+package com.v2soft.training.controller;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.v2soft.training.model.Employee;
+import com.v2soft.training.model.EmployeeAddress;
+
+@Controller
+public class EmployeeController {
+	
+	@RequestMapping(value="/getEmployeeById/{employeeId}", method=RequestMethod.GET)
+	@ResponseBody
+	public String getEmployeeById(@PathVariable String employeeId) throws JsonProcessingException {
+		Employee employee = new Employee();
+		employee.setEmployeeId(employeeId);
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json = objectMapper.writeValueAsString(employee);
+		return json;
+	}
+	
+	/*
+	 private String employeeId;
+	private String firstName;
+	private String lastName;
+	private String middleName;
+	private Date dateOfBirth;
+	private String passportNumber;
+	private String ssn;
+	private Set<EmployeeAddress> employeeAddresses = new HashSet<EmployeeAddress>(0);
+	 
+	Employee emp1 = new Employee();
+	emp1.setEmployeeId("emp1");
+	emp1.setFirstName("Kishan");
+	emp1.setLastName("Trivedi");
+	emp1.setMiddleName("P");
+	emp1.setDateOfBirth(new Date());
+	emp1.setPassportNumber("12345678");
+	emp1.setSsn("sampleSSN");
+	
+	Employee emp2 = new Employee();
+	emp2.setEmployeeId("emp1");
+	emp2.setFirstName("Kishan");
+	emp2.setLastName("Trivedi");
+	emp2.setMiddleName("P");
+	emp2.setDateOfBirth(new Date());
+	emp2.setPassportNumber("12345678");
+	emp2.setSsn("sampleSSN");
+	
+	Employee emp3 = new Employee();
+	emp3.setEmployeeId("emp1");
+	emp3.setFirstName("Kishan");
+	emp3.setLastName("Trivedi");
+	emp3.setMiddleName("P");
+	emp3.setDateOfBirth(new Date());
+	emp3.setPassportNumber("12345678");
+	emp3.setSsn("sampleSSN");
+	
+	Employee emp4 = new Employee();
+	emp4.setEmployeeId("emp1");
+	emp4.setFirstName("Kishan");
+	emp4.setLastName("Trivedi");
+	emp4.setMiddleName("P");
+	emp4.setDateOfBirth(new Date());
+	emp4.setPassportNumber("12345678");
+	emp4.setSsn("sampleSSN");
+	
+	Employee emp5 = new Employee();
+	emp5.setEmployeeId("emp1");
+	emp5.setFirstName("Kishan");
+	emp5.setLastName("Trivedi");
+	emp5.setMiddleName("P");
+	emp5.setDateOfBirth(new Date());
+	emp5.setPassportNumber("12345678");
+	emp5.setSsn("sampleSSN");
+	 
+	 */
+}

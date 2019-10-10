@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 9, 2019, 1:39:32 PM by Hibernate Tools 5.1.10.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="employee" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.v2soft.training.entities.EmployeeAddress" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="employee_address">
+        <composite-id class="com.v2soft.training.entities.EmployeeAddressId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="employeeId" type="string">
+                <column length="12" name="employee_id"/>
+            </key-property>
+            <key-property name="addressTypeId" type="int">
+                <column name="address_type_id"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.v2soft.training.entities.AddressType" embed-xml="true" fetch="select" insert="false" name="addressType" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="address_type_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.v2soft.training.entities.EmployeeInfo" embed-xml="true" fetch="select" insert="false" name="employeeInfo" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column length="12" name="employee_id" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="addressLineOne" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="address_line_one" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="addressLineTwo" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="address_line_two"/>
+        </property>
+        <property generated="never" lazy="false" name="city" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="city" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="state" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="state" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="zipcode" optimistic-lock="true" type="string" unique="false">
+            <column length="5" name="zipcode" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="zipfour" optimistic-lock="true" type="string" unique="false">
+            <column length="4" name="zipfour"/>
+        </property>
+    </class>
+</hibernate-mapping>

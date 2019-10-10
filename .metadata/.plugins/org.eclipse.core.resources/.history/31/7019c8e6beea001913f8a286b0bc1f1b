@@ -1,0 +1,10 @@
+package com.v2soft.training.controller;
+
+public class EmployeeController {
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String printHello(ModelMap model) {
+		model.addAttribute("message", "Hello Spring MVC Framework!");
+		return "hello";
+	}
+}

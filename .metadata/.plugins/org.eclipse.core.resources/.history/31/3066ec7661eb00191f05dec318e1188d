@@ -1,0 +1,11 @@
+import java.util.List;
+
+import com.v2soft.training.model.Employee;
+
+public class EmployeeList {
+	private List<Employee> employeeList;
+	
+	public EmployeeList() {
+		
+	}
+}
