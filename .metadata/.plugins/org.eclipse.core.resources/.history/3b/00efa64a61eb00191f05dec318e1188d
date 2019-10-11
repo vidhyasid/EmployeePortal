@@ -1,8 +1,0 @@
-
-public class EmployeeList {
-	private List<Employee> employeeList;
-	
-	public EmployeeList() {
-		
-	}
-}

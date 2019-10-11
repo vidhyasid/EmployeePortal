@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\ktrivedi\.m2\repository\org\hibernate\hibernate-annotations\3.5.6-Final"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\ktrivedi\.m2\repository\org\mariadb\jdbc\mariadb-java-client\2.5.0"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="2"/>
@@ -40,6 +40,7 @@
 		<item key="updateTextualMatches" value="false"/>
 		<item key="updateQualifiedNames" value="false"/>
 		<item key="patterns" value="*"/>
+		<item key="renameSubpackages" value="false"/>
 	</section>
 	<section name="JavaBuildConfigurationBlock">
 		<item key="expanded0" value="true"/>

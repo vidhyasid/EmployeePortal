@@ -26,15 +26,38 @@ public class EmployeeDao {
     }
     
 	@Transactional
-    public List<Employee> list() {
-		Query query = getCurrentSession().createSQLQuery("select * from employee_info");
-    	List list = query.list();
-    	
-        /*@SuppressWarnings("unchecked")
-        List<Employee> listUser = (List<Employee>) getCurrentSession()
-                .createCriteria(Employee.class)
-                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();*/
- 
-        return list;
+    public List<Employee> getEmployeeList() {
+		String query = "SELECT * FROM employee_info";
+        return getCurrentSession().createSQLQuery(query).list();
     }
+	
+	@Transactional
+	public List getEmployeeById(String employeeId) {
+		String queryString = "SELECT * FROM employee_info WHERE employee_id = :id";
+		Query query = getCurrentSession().createSQLQuery(queryString);
+		query.setParameter("id", employeeId);
+		
+		if(query.getResultList().size() <= 0)
+			return null;
+		return query.getResultList();
+	}
+	
+	/*@Transactional
+	public boolean addNewEmployee(String employeeId) {
+		String queryString = "SELECT * FROM employee_info WHERE employee_id = :id";
+		Query query = getCurrentSession().createSQLQuery(queryString);
+		query.setParameter("id", employeeId);
+		if(query.getResultList().size() >= 1) {
+			//update info instead?
+			return false;
+		} else {
+			queryString = "INSERT INTO employee_info "
+					+ "(employee_id, first_name, last_name, middle_name, "
+					+ "date_of_birth, passport_number, ssn) "
+					+ "VALUES :id, :fn, :ln, :mn, :dob, :pn, :ssn";
+			query = getCurrentSession().createSQLQuery(queryString);
+			query.setParameter("id", employeeId);
+			return true;
+		}
+	}*/
 }

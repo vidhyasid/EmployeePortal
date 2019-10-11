@@ -45,8 +45,7 @@ public class EmployeeController {
 	@RequestMapping(value="/getEmployeeById/{employeeId}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getEmployeeById(@PathVariable String employeeId) throws JsonProcessingException {
-		Employee employee = employeeList.getEmployeeById(employeeId);
-		return mapper.writeValueAsString(employee);
+		return mapper.writeValueAsString(employeeDao.getEmployeeById(employeeId));
 	}
 	
 	//http://localhost:8080/EmployeePortal/getEmployeesByFirstName/{fn}
@@ -66,11 +65,11 @@ public class EmployeeController {
 	}
 	
 	//http://localhost:8080/EmployeePortal/getAllEmployees
-	@RequestMapping(value="/getAllEmployees", method=RequestMethod.GET)
+	@RequestMapping(value="/getEmployeeList", method=RequestMethod.GET)
 	@ResponseBody
 	public String getAllEmployees() throws JsonProcessingException {
 		//EmployeeDao employeeDao = (EmployeeDao) ctx.getBean("employeeDao");
-		List<Employee> list = employeeDao.list();
+		List<Employee> list = employeeDao.getEmployeeList();
 		return mapper.writeValueAsString(list);
 	}
 	

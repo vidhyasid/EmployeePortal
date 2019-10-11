@@ -30,9 +30,13 @@
 <fullyQualifiedTypeName name="org.springframework.transaction.annotation.EnableTransactionManagement"/>
 <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
 <fullyQualifiedTypeName name="com.v2soft.training.model.Employee"/>
-<fullyQualifiedTypeName name="com.v2soft.training.dao.EmployeeDao"/>
 <fullyQualifiedTypeName name="org.hibernate.Session"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
 <fullyQualifiedTypeName name="org.springframework.web.context.support.WebApplicationContextUtils"/>
+<fullyQualifiedTypeName name="com.v2soft.training.dao.EmployeeDao"/>
+<fullyQualifiedTypeName name="com.v2soft.training.service.EmployeeList"/>
+<fullyQualifiedTypeName name="com.v2soft.training.entity.EmployeeInfo"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+<fullyQualifiedTypeName name="org.hibernate.Query"/>
 </qualifiedTypeNameHistroy>
