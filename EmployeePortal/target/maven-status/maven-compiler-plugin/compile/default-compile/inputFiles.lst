@@ -5,8 +5,8 @@ C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\E
 C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\entity\EmployeeAddressId.java
 C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\model\AddressType.java
 C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\controller\EmployeeController.java
+C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\config\HibernateConfiguration.java
 C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\entity\EmployeeAddress.java
 C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\dao\EmployeeDao.java
 C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\service\EmployeeList.java
-C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\utility\HibernateConfiguration.java
 C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\EmployeePortal\src\main\java\com\v2soft\training\entity\EmployeeInfo.java

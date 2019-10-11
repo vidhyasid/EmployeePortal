@@ -1,4 +1,4 @@
-package com.v2soft.training.utility;
+package com.v2soft.training.config;
 
 import java.util.Properties;
 
@@ -20,10 +20,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:persistence-mariadb.properties" })
-@ComponentScan({ "org.baeldung.spring.persistence" })
+@ComponentScan({ "com.v2soft.training" })
 public class HibernateConfiguration {
 	@Autowired
-   private Environment env;
+	private Environment env;
  
    @Bean
    public LocalSessionFactoryBean sessionFactory() {
@@ -52,8 +52,7 @@ public class HibernateConfiguration {
    public HibernateTransactionManager transactionManager(
      SessionFactory sessionFactory) {
   
-      HibernateTransactionManager txManager
-       = new HibernateTransactionManager();
+      HibernateTransactionManager txManager = new HibernateTransactionManager();
       txManager.setSessionFactory(sessionFactory);
  
       return txManager;

@@ -1,10 +1,10 @@
-#Wed Oct 09 13:35:31 EDT 2019
-ct=hibernate
-a=new-configuration
-c=23
-s=0
-d=1570642531760
-v=5.4.5
-cmp=hibernate
-cl=5.0
+#Fri Oct 11 14:22:11 EDT 2019
 l=Hibernate runtime version
+ct=hibernate
+d=1570818131136
+c=8
+cmp=hibernate
+a=new-configuration
+cl=5.0
+v=5.4.5
+s=0

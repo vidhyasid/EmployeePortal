@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +29,10 @@ public class EmployeeController {
 	private EmployeeList employeeList = new EmployeeList();
 	private ObjectMapper mapper = new ObjectMapper();
 	
-	//@Autowired
-	private EmployeeDao employeeDao = new EmployeeDao();
+	@Autowired
+	private EmployeeDao employeeDao;
+	
+	//private ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 	
 	/*@GetMapping(value="/abc/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -66,11 +69,8 @@ public class EmployeeController {
 	@RequestMapping(value="/getAllEmployees", method=RequestMethod.GET)
 	@ResponseBody
 	public String getAllEmployees() throws JsonProcessingException {
-		//ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext());
-	    //ed = (EmployeeDao) context.getBean("employeeDao");
-		//employeeDao = new EmployeeDao();
+		//EmployeeDao employeeDao = (EmployeeDao) ctx.getBean("employeeDao");
 		List<Employee> list = employeeDao.list();
-		//return listToString(list);
 		return mapper.writeValueAsString(list);
 	}
 	
