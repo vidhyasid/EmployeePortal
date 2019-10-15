@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\ktrivedi\Documents\workspace-spring-training\EmployeePortal_Workscape\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\EmployeePortal" path="/EmployeePortal" reloadable="true" source="org.eclipse.jst.jee.server:EmployeePortal"/></Host>
+      <Context docBase="C:\sts-4.4.0.RELEASE\workscape\NewEmployeePortal_Workspace\V2Soft_Spring_Training\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\sts-4.4.0.RELEASE\workscape\NewEmployeePortal_Workspace\V2Soft_Spring_Training\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\EmployeePortal" path="/EmployeePortal" reloadable="true" source="org.eclipse.jst.jee.server:EmployeePortal"/></Host>
     </Engine>
   </Service>
 </Server>
