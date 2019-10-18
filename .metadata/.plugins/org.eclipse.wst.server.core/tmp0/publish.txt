@@ -1,4 +1,4 @@
 #Tomcat publish data
-#Tue Oct 15 16:12:27 EDT 2019
+#Fri Oct 18 17:46:23 EDT 2019
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\vvenkataraman\\.m2\\repository\\org\\apache\\tomcat\\embed\\tomcat-embed-jasper\\9.0.14\\tomcat-embed-jasper-9.0.14.jar=WEB-INF/lib/tomcat-embed-jasper-9.0.14.jar
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\vvenkataraman\\.m2\\repository\\org\\springframework\\spring-web\\4.3.25.RELEASE\\spring-web-4.3.25.RELEASE.jar=WEB-INF/lib/spring-web-4.3.25.RELEASE.jar

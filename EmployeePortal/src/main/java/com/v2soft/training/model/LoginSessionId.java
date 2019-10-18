@@ -9,15 +9,26 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class LoginSessionId implements java.io.Serializable {
 
+	private String loginSessionId;
 	private String userName;
-	private int loginStatus;
+	private String employeeId;
 
 	public LoginSessionId() {
 	}
 
-	public LoginSessionId(String userName, int loginStatus) {
+	public LoginSessionId(String loginSessionId, String userName, String employeeId) {
+		this.loginSessionId = loginSessionId;
 		this.userName = userName;
-		this.loginStatus = loginStatus;
+		this.employeeId = employeeId;
+	}
+
+	@Column(name = "login_session_id", nullable = false, length = 100)
+	public String getLoginSessionId() {
+		return this.loginSessionId;
+	}
+
+	public void setLoginSessionId(String loginSessionId) {
+		this.loginSessionId = loginSessionId;
 	}
 
 	@Column(name = "userName", nullable = false, length = 20)
@@ -29,13 +40,13 @@ public class LoginSessionId implements java.io.Serializable {
 		this.userName = userName;
 	}
 
-	@Column(name = "login_status", nullable = false)
-	public int getLoginStatus() {
-		return this.loginStatus;
+	@Column(name = "Employee_id", nullable = false, length = 12)
+	public String getEmployeeId() {
+		return this.employeeId;
 	}
 
-	public void setLoginStatus(int loginStatus) {
-		this.loginStatus = loginStatus;
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public boolean equals(Object other) {
@@ -47,16 +58,22 @@ public class LoginSessionId implements java.io.Serializable {
 			return false;
 		LoginSessionId castOther = (LoginSessionId) other;
 
-		return ((this.getUserName() == castOther.getUserName()) || (this.getUserName() != null
-				&& castOther.getUserName() != null && this.getUserName().equals(castOther.getUserName())))
-				&& (this.getLoginStatus() == castOther.getLoginStatus());
+		return ((this.getLoginSessionId() == castOther.getLoginSessionId())
+				|| (this.getLoginSessionId() != null && castOther.getLoginSessionId() != null
+						&& this.getLoginSessionId().equals(castOther.getLoginSessionId())))
+				&& ((this.getUserName() == castOther.getUserName()) || (this.getUserName() != null
+						&& castOther.getUserName() != null && this.getUserName().equals(castOther.getUserName())))
+				&& ((this.getEmployeeId() == castOther.getEmployeeId())
+						|| (this.getEmployeeId() != null && castOther.getEmployeeId() != null
+								&& this.getEmployeeId().equals(castOther.getEmployeeId())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
+		result = 37 * result + (getLoginSessionId() == null ? 0 : this.getLoginSessionId().hashCode());
 		result = 37 * result + (getUserName() == null ? 0 : this.getUserName().hashCode());
-		result = 37 * result + this.getLoginStatus();
+		result = 37 * result + (getEmployeeId() == null ? 0 : this.getEmployeeId().hashCode());
 		return result;
 	}
 

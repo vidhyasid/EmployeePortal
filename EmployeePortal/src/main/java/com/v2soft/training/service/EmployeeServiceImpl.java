@@ -1,7 +1,10 @@
 package com.v2soft.training.service;
 
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.v2soft.training.dao.EmployeeDao;
 import com.v2soft.training.dataModel.EmployeeAddressInfo;
 import com.v2soft.training.dataModel.EmployeeInfo;
+import com.v2soft.training.dataModel.EmployeeModel;
 import com.v2soft.training.dataModel.LoginInfo;
+import com.v2soft.training.dataModel.LoginUser;
 import com.v2soft.training.model.AddressType;
 import com.v2soft.training.model.Employee;
 import com.v2soft.training.model.EmployeeAddress;
 import com.v2soft.training.model.Login;
+import com.v2soft.training.model.LoginId;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -72,15 +78,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.projectedList();
 	}
 
-	 @Transactional
+	@Transactional
 	@Override
 	public Long getCount() {
 		return employeeDao.getCount();
 	}
 
+	@Transactional
 	@Override
-	public EmployeeInfo validateUser(LoginInfo login) {
-		return employeeDao.validateUser(login);
+	public EmployeeInfo validateUser(LoginUser login, HttpServletRequest request) {
+		return employeeDao.validateUser(login,request);
+	}
+
+	@Transactional
+	@Override
+	public List<EmployeeInfo> getEmployeeInfo(EmployeeModel employeeInfo) throws ParseException {
+		return employeeDao.getEmployeeInfo(employeeInfo);
+	}
+	@Transactional
+	@Override
+	public void setLogoutStatus(String sessionId) {
+		 employeeDao.setLogoutStatus(sessionId);
+		
 	}
 	
     

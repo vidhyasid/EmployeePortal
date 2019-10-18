@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -12,10 +12,10 @@
                 <table align="center">
                     <tr>
                         <td>
-                            <form:label path="username">Username: </form:label>
+                            <form:label path="userName">UserName: </form:label>
                         </td>
                         <td>
-                            <form:input path="username" name="username" id="username" />
+                            <form:input path="userName" name="userName" id="userName" />
                         </td>
                     </tr>
                     <tr>
@@ -32,7 +32,12 @@
                             <form:button id="login" name="login">Login</form:button>
                         </td>
                     </tr>
-                    <tr></tr>                   
+                    <tr></tr>  
+                     <tr>
+                        <td></td>
+                        <td><a href="home">Home</a>
+                        </td>
+                    </tr>                 
                 </table>
             </form:form>
             <table align="center">

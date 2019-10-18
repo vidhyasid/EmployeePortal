@@ -2,12 +2,15 @@ package com.v2soft.training.controller;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +23,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.v2soft.training.dataModel.EmployeeAddressInfo;
 import com.v2soft.training.dataModel.EmployeeInfo;
+import com.v2soft.training.dataModel.EmployeeModel;
+import com.v2soft.training.dataModel.LoginIdInfo;
 import com.v2soft.training.dataModel.LoginInfo;
+import com.v2soft.training.dataModel.LoginUser;
+import com.v2soft.training.filter.AddResponseHeaderFilter;
 import com.v2soft.training.model.Employee;
-
+import com.v2soft.training.model.Login;
+import com.v2soft.training.model.LoginId;
 import com.v2soft.training.service.EmployeeService;
 
 @Controller
@@ -30,6 +38,7 @@ import com.v2soft.training.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService; 
+	//private String UUID;
 	
 	@RequestMapping(value="/getEmployeeById/{employeeId}", method=RequestMethod.GET)
 	@ResponseBody 
@@ -50,13 +59,7 @@ public class EmployeeController {
 		return json;
 	}
 	
-	  @RequestMapping(value="/getEmployeeList", method=RequestMethod.GET)
-	  @ResponseBody
-		public String getAllEmployees() throws JsonProcessingException {
-		    ObjectMapper mapper = new ObjectMapper();
-		    List <EmployeeInfo> list = employeeService.list(); 
-			return mapper.writeValueAsString(list);
-		}
+	 
 	  
 	  @RequestMapping(value="/getProjectedList", method=RequestMethod.GET)
 	  @ResponseBody
@@ -101,53 +104,12 @@ public class EmployeeController {
 			   return("Employee with Id" + employee.getEmployeeId() + "has been updated");
 	     }
 	  
-	  
-
-	    /* @RequestMapping(value ="/SearchEmployee", method=RequestMethod.POST)
-	     @ResponseBody
-	     public String SearchEmployee(@RequestParam(value="Id",required=false) String Id,
-	    		                      @RequestParam(value="Fname",required=false) String Fname,
-	    		                      @RequestParam(value="Lname",required=false) String Lname,
-	    		                      @RequestParam(value="Mname",required=false) String Mname,
-	    		                      @RequestParam(value="DOB",required=false) String DOB,
-	    		                      @RequestParam(value="Passport",required=false) String Passport,
-	    		                      @RequestParam(value="SSN",required=false) String SSN)    		                    
-	    		 throws JsonProcessingException, ParseException {
-	    	 
-	    	 List<Employee> employeeList = employeeService.list();	    	
-	    	 ObjectMapper objectMapper = new ObjectMapper();
-	         String json = "";
-	    	
-			for(Employee employee: employeeList) {
-	    		 if(Id !=null && Id.equals(employee.getEmployeeId())){
-	    			 json = json.concat(objectMapper.writeValueAsString(employee)) + "\n";
-	    		 }
-	    		 else if(Fname !=null && Fname.equals(employee.getFirstName())){
-	    			 json = json.concat(objectMapper.writeValueAsString(employee)) + "\n";
-	    		 }
-	    		 else if(Lname !=null && Lname.equals(employee.getLastName())){
-	    			 json = json.concat(objectMapper.writeValueAsString(employee)) + "\n";
-	    		 }
-	    		 else if(Mname !=null && Mname.equals(employee.getMiddleName())){
-	    			 json = json.concat(objectMapper.writeValueAsString(employee)) + "\n";
-	    		 }
-	    		 else if(DOB !=null && DOB.equals(objectMapper.writeValueAsString(employee.getDateOfBirth()))){
-	    			 json = json.concat(objectMapper.writeValueAsString(employee)) + "\n";
-	    		 }
-	    		 else if(Passport !=null && Passport.equals(employee.getPassportNumber())){
-	    			 json = json.concat(objectMapper.writeValueAsString(employee)) + "\n";
-	    		 }
-	    		 else if(SSN !=null && SSN.equals(employee.getSsn())){
-	    			 json = json.concat(objectMapper.writeValueAsString(employee)) + "\n";
-	    		 }
-	    	 }  
-	    	 if(json.equals(""))
-	    	 {
-	    		 json = "No Such Employee";
-	    	 }
-	    	 return json;
-	     }*/
-
+	  @RequestMapping(value = "/employeeForm", method = RequestMethod.GET)	 
+		 public ModelAndView employeeForm(HttpServletRequest request, HttpServletResponse response) {
+		  ModelAndView mav = new ModelAndView("employeeForm"); 		 
+			 mav.addObject("employeeForm",new EmployeeModel());
+			 return mav; 
+			 }
 	     @RequestMapping(value="/deleteEmployeeById/{employeeId}", method=RequestMethod.GET)
 	 	@ResponseBody 
 	 	public String deleteEmployeeGet(@PathVariable("employeeId") String employeeId){ 
@@ -155,36 +117,66 @@ public class EmployeeController {
 	 		return ("Employee with id"+employeeId+"has been deleted");
 	 	}
 	     
-	   /*  @RequestMapping(value="/getLoginInfo", method=RequestMethod.GET)
-	     @ResponseBody
-	     public String getLoginInfo() throws JsonProcessingException {
-	    	 ObjectMapper mapper = new ObjectMapper();
-	         return mapper.writeValueAsString(employeeService.getLoginInfo());
-	     }*/
-	    
-	
+	     @RequestMapping(value = "/home", method = RequestMethod.GET)	 
+		 public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response) {
+			 ModelAndView mav = new ModelAndView("home"); 		 			
+			 return mav; 
+			 }
+	     
 	 @RequestMapping(value = "/login", method = RequestMethod.GET)	 
 	 public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
-		 ModelAndView mav = new ModelAndView("login"); 
-		 //return new ModelAndView("login", "command", new LoginInfo());
-		 mav.addObject("login",new LoginInfo());
+		 ModelAndView mav = new ModelAndView("login"); 		 
+		 mav.addObject("login",new LoginUser());
 		 return mav; 
+		 }
+	 
+	 @RequestMapping(value = "/logout", method = RequestMethod.GET)	 
+	 public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
+		employeeService.setLogoutStatus(request.getSession().getId());
+		return new ModelAndView("login");
 		 }
 	 
 	     @RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
 	     public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response,
-	     @ModelAttribute("login") LoginInfo login) {
+	     @ModelAttribute("login") LoginUser login) {
 	       ModelAndView mav = null;
-	       EmployeeInfo employee = employeeService.validateUser(login);
-	     
+	       EmployeeInfo employee = employeeService.validateUser(login,request);	    
 	       if (null != employee) {
-	       mav = new ModelAndView("welcome");
-	       mav.addObject("firstname",employee.getFirstName());
+	    	   Cookie cookie = new Cookie("loginSessionId", request.getSession().getId());
+	    	   response.addCookie(cookie);
+	    	   mav = new ModelAndView("welcome");
+	    	   mav.addObject("firstname",employee.getFirstName());   	       
 	       } else {
-	       mav = new ModelAndView("login");
-	       mav.addObject("message", "Username or Password is wrong!!");
+	    	   mav = new ModelAndView("login");
+	    	   mav.addObject("message", "Username or Password is wrong!!");
 	       }
 	       return mav;
 	     }
+	     
+	     @RequestMapping(value="/displayEmployee", method=RequestMethod.POST)		 
+			public ModelAndView displayEmployee(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("employeeForm") EmployeeModel employees) throws ParseException {
+		    ModelAndView model = null; 			
+		      List<EmployeeInfo> list = employeeService.getEmployeeInfo(employees);   
+		      if(null != list) {
+		    	  model = new ModelAndView("employeeInformation");
+		    	  model.addObject("lists", list);
+		      }
+		      else {
+		    	  model = new ModelAndView("getEmployeeDetails");
+		      }		     
+			    return model;		
+				
+		     }
+	     
+	     @RequestMapping(value="/getEmployeeList", method=RequestMethod.GET)		 
+			public ModelAndView getAllEmployees(HttpServletRequest request, HttpServletResponse response) {		
+	    	 ModelAndView mav = null;
+		    List <EmployeeInfo> list = employeeService.list(); 
+			    mav = new ModelAndView("employeeInformation");
+			    mav.addObject("lists", list);			    			    	 
+	    		return mav;
+	     }
+	     	 
 }
 

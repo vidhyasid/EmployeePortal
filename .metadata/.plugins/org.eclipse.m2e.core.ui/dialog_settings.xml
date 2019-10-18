@@ -19,6 +19,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\sts-4.4.0.RELEASE\workscape\NewEmployeePortal_Workspace\V2Soft_Spring_Training"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -42,10 +43,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.v2soft.training.EmployeePortalJsp"/>
 		</list>
 		<list key="groupId">
+			<item value="com.v2soft.training"/>
 		</list>
 		<list key="artifactId">
+			<item value="EmployeePortalJsp"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -61,12 +65,10 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="com.v2soft.training"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="EmployeePortalX"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -79,5 +81,7 @@
 		<list key="version">
 			<item value="0.0.1-SNAPSHOT"/>
 		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.wizards.CustomArchetypeDialog">
 	</section>
 </section>
